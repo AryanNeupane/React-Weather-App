@@ -1,9 +1,7 @@
 import React from "react";
 import Card from "@mui/material/Card";
-
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-
 import Typography from "@mui/material/Typography";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
@@ -20,23 +18,9 @@ function InfoBox({ info }) {
 
   // Default fallback
   let imageUrl = hot_url;
+  let WeatherIcon = WhatshotIcon;
 
-  // Decide based on weather condition or temperature
   const weatherDesc = info.weather.toLowerCase();
-
-  if (
-    weatherDesc.includes("rain") ||
-    weatherDesc.includes("drizzle") ||
-    weatherDesc.includes("thunderstorm")
-  ) {
-    imageUrl = rain_url;
-  } else if (info.temp < 15) {
-    imageUrl = cold_url;
-  } else {
-    imageUrl = hot_url;
-  }
-
-  let WeatherIcon = WhatshotIcon; // default to hot
 
   if (
     weatherDesc.includes("rain") ||
@@ -69,24 +53,24 @@ function InfoBox({ info }) {
 
             <Typography variant="body2" sx={{ color: "text.secondary" }}>
               <div className="temp-info">
-                <p>
+                <span>
                   <strong>Temperature:</strong> {info.temp} °C
-                </p>
-                <p>
+                </span>
+                <span>
                   <strong>Weather:</strong> {info.weather}
-                </p>
-                <p>
+                </span>
+                <span>
                   <strong>Feels Like:</strong> {info.feelsLike} °C
-                </p>
-                <p>
+                </span>
+                <span>
                   <strong>Min:</strong> {info.tempMin} °C
-                </p>
-                <p>
+                </span>
+                <span>
                   <strong>Max:</strong> {info.tempMax} °C
-                </p>
-                <p>
-                  <strong>Humidity:</strong> {info.humidity} °C
-                </p>
+                </span>
+                <span>
+                  <strong>Humidity:</strong> {info.humidity} %
+                </span>
               </div>
             </Typography>
           </CardContent>
